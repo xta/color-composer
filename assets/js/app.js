@@ -1,3 +1,6 @@
+"use strict";
+/*jslint node: true */
+
 var $ = require('jquery');
 var Keyboard = require('keyboardjs');
 
