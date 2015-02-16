@@ -1,3 +1,7 @@
+.current .color {
+  width: 200px;
+  height: 40px; }
+
 /* keyboard credit: http://codepen.io/kowlor/pen/MYOKRd */
 html, body {
   height: 100vh;
