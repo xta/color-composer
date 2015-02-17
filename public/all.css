@@ -130,8 +130,9 @@ body {
   transform: translateX(2.5%); }
 
 .keyboard .row:nth-child(3) {
-  margin-left: 8.5%;
-  margin-right: 14%; }
+  -ms-transform: translateX(7%);
+  -webkit-transform: translateX(7%);
+  transform: translateX(7%); }
 
 .keyboard .row i {
   -webkit-box-orient: vertical;
