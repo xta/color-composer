@@ -140,15 +140,7 @@ body {
   -ms-flex-direction: column-reverse;
   flex-direction: column-reverse; }
 
-.keyboard .row:nth-child(2) i b {
-  background: #404048;
-  color: #eee;
-  border-radius: 0.5rem;
-  padding: 0 0.3125rem;
-  line-height: 0;
-  margin-top: 0.3125rem; }
-
-.keyboard .row:nth-child(3) i b {
+.keyboard .row i b {
   background: #404048;
   color: #eee;
   border-radius: 0.5rem;

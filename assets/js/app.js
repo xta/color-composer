@@ -18,47 +18,47 @@ $(function() {
 function initColor() {
 
   CCAPP.color = {
-    hue: 0, // range: 0 - 360
+    hue: 240, // range: 0 - 360. 0 & 360 are the same (red)
     saturation: 100, // range: 0 - 100
     lightness: 50, // range: 0 - 100
     alpha: 1, // range: 0 - 1
 
-    incrementHue: function(){
-      this.hue = this.hue + 1;
-      if (this.hue > 360) {
-        this.hue = 0;
+    incrementHue: function(change){
+      this.hue = this.hue + change;
+      if (this.hue >= 360) {
+        this.hue = this.hue - 360;
       }
     },
-    decrementHue: function(){
-      this.hue = this.hue - 1;
+    decrementHue: function(change){
+      this.hue = this.hue - change;
       if (this.hue < 0) {
-        this.hue = 360;
+        this.hue = this.hue + 360;
       }
     },
 
-    incrementSaturation: function(){
-      this.saturation = this.saturation + 1;
+    incrementSaturation: function(change){
+      this.saturation = this.saturation + change;
       if (this.saturation > 100) {
-        this.saturation = 0;
-      }
-    },
-    decrementSaturation: function(){
-      this.saturation = this.saturation - 1;
-      if (this.saturation < 0) {
         this.saturation = 100;
       }
     },
-
-    incrementLightness: function(){
-      this.lightness = this.lightness + 1;
-      if (this.hue > 100) {
-        this.hue = 0;
+    decrementSaturation: function(change){
+      this.saturation = this.saturation - change;
+      if (this.saturation < 0) {
+        this.saturation = 0;
       }
     },
-    decrementLightness: function(){
-      this.lightness = this.lightness - 1;
-      if (this.hue < 0) {
-        this.hue = 100;
+
+    incrementLightness: function(change){
+      this.lightness = this.lightness + change;
+      if (this.lightness > 100) {
+        this.lightness = 100;
+      }
+    },
+    decrementLightness: function(change){
+      this.lightness = this.lightness - change;
+      if (this.lightness < 0) {
+        this.lightness = 0;
       }
     },
 
@@ -91,37 +91,73 @@ function initColor() {
 
 // key event listeners
 function setKeyListeners() {
-  Keyboard.on('a', function(e) {
-    CCAPP.color.incrementHue();
-    CCAPP.color.update();
-  });
 
-  Keyboard.on('s', function(e) {
-    CCAPP.color.incrementSaturation();
-    CCAPP.color.update();
-  });
+  var bigChange = 10,
+    smallChange = 1;
 
-  Keyboard.on('d', function(e) {
-    CCAPP.color.incrementLightness();
-    CCAPP.color.update();
-  });
+  // Hue
 
-  Keyboard.on('z', function(e) {
-    CCAPP.color.decrementHue();
-    CCAPP.color.update();
-  });
+    Keyboard.on('q', function(e) {
+      CCAPP.color.decrementHue(bigChange);
+      CCAPP.color.update();
+    });
 
-  Keyboard.on('x', function(e) {
-    CCAPP.color.decrementSaturation();
-    CCAPP.color.update();
-  });
+    Keyboard.on('w', function(e) {
+      CCAPP.color.decrementHue(smallChange);
+      CCAPP.color.update();
+    });
 
-  Keyboard.on('c', function(e) {
-    CCAPP.color.decrementLightness();
-    CCAPP.color.update();
-  });
+    Keyboard.on('e', function(e) {
+      CCAPP.color.incrementHue(smallChange);
+      CCAPP.color.update();
+    });
 
-  Keyboard.on('space', function(e) {
-    console.log('you pressed space');
-  });
+    Keyboard.on('r', function(e) {
+      CCAPP.color.incrementHue(bigChange);
+      CCAPP.color.update();
+    });
+
+  // Saturation
+
+    Keyboard.on('a', function(e) {
+      CCAPP.color.decrementSaturation(bigChange);
+      CCAPP.color.update();
+    });
+
+    Keyboard.on('s', function(e) {
+      CCAPP.color.decrementSaturation(smallChange);
+      CCAPP.color.update();
+    });
+
+    Keyboard.on('d', function(e) {
+      CCAPP.color.incrementSaturation(smallChange);
+      CCAPP.color.update();
+    });
+
+    Keyboard.on('f', function(e) {
+      CCAPP.color.incrementSaturation(bigChange);
+      CCAPP.color.update();
+    });
+
+  // Lightness
+
+    Keyboard.on('z', function(e) {
+      CCAPP.color.decrementLightness(bigChange);
+      CCAPP.color.update();
+    });
+
+    Keyboard.on('x', function(e) {
+      CCAPP.color.decrementLightness(smallChange);
+      CCAPP.color.update();
+    });
+
+    Keyboard.on('c', function(e) {
+      CCAPP.color.incrementLightness(smallChange);
+      CCAPP.color.update();
+    });
+
+    Keyboard.on('v', function(e) {
+      CCAPP.color.incrementLightness(bigChange);
+      CCAPP.color.update();
+    });
 }
