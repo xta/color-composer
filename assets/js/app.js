@@ -107,68 +107,104 @@ function setKeyListeners() {
 
   // Hue
 
-    Keyboard.on('q', function(e) {
+    Keyboard.on('q', function() {
       CCAPP.color.decrementHue(bigChange);
       CCAPP.color.update();
+      $('i.q-key').addClass('active');
+    }, function() {
+      $('i.q-key').removeClass('active');
     });
 
-    Keyboard.on('w', function(e) {
+    Keyboard.on('w', function() {
       CCAPP.color.decrementHue(smallChange);
       CCAPP.color.update();
+      $('i.w-key').addClass('active');
+    }, function() {
+      $('i.w-key').removeClass('active');
     });
 
-    Keyboard.on('e', function(e) {
+    Keyboard.on('e', function() {
       CCAPP.color.incrementHue(smallChange);
       CCAPP.color.update();
+      $('i.e-key').addClass('active');
+    }, function() {
+      $('i.e-key').removeClass('active');
     });
 
-    Keyboard.on('r', function(e) {
+    Keyboard.on('r', function() {
       CCAPP.color.incrementHue(bigChange);
       CCAPP.color.update();
+      $('i.r-key').addClass('active');
+    }, function() {
+      $('i.r-key').removeClass('active');
     });
 
   // Saturation
 
-    Keyboard.on('a', function(e) {
+    Keyboard.on('a', function() {
       CCAPP.color.decrementSaturation(bigChange);
       CCAPP.color.update();
+      $('i.a-key').addClass('active');
+    }, function() {
+      $('i.a-key').removeClass('active');
     });
 
-    Keyboard.on('s', function(e) {
+    Keyboard.on('s', function() {
       CCAPP.color.decrementSaturation(smallChange);
       CCAPP.color.update();
+      $('i.s-key').addClass('active');
+    }, function() {
+      $('i.s-key').removeClass('active');
     });
 
-    Keyboard.on('d', function(e) {
+    Keyboard.on('d', function() {
       CCAPP.color.incrementSaturation(smallChange);
       CCAPP.color.update();
+      $('i.d-key').addClass('active');
+    }, function() {
+      $('i.d-key').removeClass('active');
     });
 
-    Keyboard.on('f', function(e) {
+    Keyboard.on('f', function() {
       CCAPP.color.incrementSaturation(bigChange);
       CCAPP.color.update();
+      $('i.f-key').addClass('active');
+    }, function() {
+      $('i.f-key').removeClass('active');
     });
 
   // Lightness
 
-    Keyboard.on('z', function(e) {
+    Keyboard.on('z', function() {
       CCAPP.color.decrementLightness(bigChange);
       CCAPP.color.update();
+      $('i.z-key').addClass('active');
+    }, function() {
+      $('i.z-key').removeClass('active');
     });
 
-    Keyboard.on('x', function(e) {
+    Keyboard.on('x', function() {
       CCAPP.color.decrementLightness(smallChange);
       CCAPP.color.update();
+      $('i.x-key').addClass('active');
+    }, function() {
+      $('i.x-key').removeClass('active');
     });
 
-    Keyboard.on('c', function(e) {
+    Keyboard.on('c', function() {
       CCAPP.color.incrementLightness(smallChange);
       CCAPP.color.update();
+      $('i.c-key').addClass('active');
+    }, function() {
+      $('i.c-key').removeClass('active');
     });
 
-    Keyboard.on('v', function(e) {
+    Keyboard.on('v', function() {
       CCAPP.color.incrementLightness(bigChange);
       CCAPP.color.update();
+      $('i.v-key').addClass('active');
+    }, function() {
+      $('i.v-key').removeClass('active');
     });
 }
 

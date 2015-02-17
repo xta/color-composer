@@ -12,10 +12,12 @@ $current-bg-color: #111;
 $picker-bg-color: #222;
 
 // keyboard key
-$key-color: #a28d81;
+$key-color: #88b7bf;
 $key-active-color: #ddd;
 $key-bg-color: #1d1615;
 $key-border-color: #70707e;
+$key-disabled-color: #65787b;
+$key-disabled-bg-color: fd1615;
 
 // label (helper on key)
 $label-color: #eee;
@@ -223,11 +225,17 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin: 0.625rem;
+
 }
 
 .keyboard .row i {
   color: $key-color;
   background-color: $key-bg-color;
+}
+
+.keyboard .row i.disabled {
+  color: $key-disabled-color;
+  background-color: $key-disabled-bg-color;
 }
 
 .keyboard .row:nth-child(2) {
@@ -286,15 +294,13 @@ body {
 }
 .keyboard i:hover, .keyboard .space:hover {
   border-color: $key-active-color;
-  color: $key-active-color;
 }
-.keyboard i:active, .keyboard i.is-active, .keyboard .space:active, .keyboard .space.is-active {
+.keyboard i.disabled:hover, .keyboard .space.disabled:hover {
   border-color: $key-border-color;
-  color: $key-border-color;
-  box-shadow: 0 0 0.5625rem -0.125rem $key-border-color;
-  -ms-transform: translateY(0.0625rem);
-  -webkit-transform: translateY(0.0625rem);
-  transform: translateY(0.0625rem);
+}
+.keyboard i.active {
+  border-color: $key-active-color;
+  color: $key-active-color;
 }
 .keyboard i {
   font-style: normal;
