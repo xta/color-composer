@@ -4,7 +4,8 @@
 
 var $ = require('jquery');
 var Keyboard = require('keyboardjs');
-var oneColor = require('onecolor');
+var onecolor = require('onecolor');
+var colorjoe = require('colorjoe');
 
 global.window = global;
 var CCAPP = global.CCAPP || {}; // ColorComposer App
@@ -12,15 +13,17 @@ var CCAPP = global.CCAPP || {}; // ColorComposer App
 $(function() {
   initColor();
   setKeyListeners();
+  setColorPicker();
+  CCAPP.color.update();
 });
 
 // current color HSL
 function initColor() {
 
   CCAPP.color = {
-    hue: 240, // range: 0 - 360. 0 & 360 are the same (red)
+    hue: 208, // range: 0 - 360. 0 & 360 are the same
     saturation: 100, // range: 0 - 100
-    lightness: 50, // range: 0 - 100
+    lightness: 43, // range: 0 - 100
     alpha: 1, // range: 0 - 1
 
     incrementHue: function(change){
@@ -68,7 +71,11 @@ function initColor() {
     },
 
     toHexString: function(){
-      return oneColor(this.toHSLAString()).hex();
+      return onecolor(this.toHSLAString()).hex();
+    },
+
+    toRGBString: function(){
+      return onecolor(this.toHSLAString()).css();
     },
 
     log: function(){
@@ -77,16 +84,19 @@ function initColor() {
     },
 
     update: function(){
-      var hsla = this.toHSLAString();
       var hex = this.toHexString();
       $('.current .color').css('background-color', hex );
-      $('.current .info .hsla').text( hsla );
       $('.current .info .hex').text( hex );
+      $('.current .info .rgb').text( this.toRGBString() );
+
+      $('.current .status .h .value').text( this.hue );
+      $('.current .status .s .value').text( this.saturation );
+      $('.current .status .l .value').text( this.lightness );
+
+      CCAPP.picker.set( hex );
     }
 
   };
-
-  CCAPP.color.update();
 }
 
 // key event listeners
@@ -160,4 +170,13 @@ function setKeyListeners() {
       CCAPP.color.incrementLightness(bigChange);
       CCAPP.color.update();
     });
+}
+
+function setColorPicker() {
+  var joe = colorjoe.rgb('picker');
+  CCAPP.picker = CCAPP.picker || joe;
+
+  CCAPP.picker.on('change', function(c) {
+    // TODO: implement update of pagewide states when picker is changed
+  });
 }

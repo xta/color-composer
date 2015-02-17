@@ -9,18 +9,36 @@
 </head>
 
 <body>
-
-  <h1>Color Composer</h1>
+  <h1 class='title'>Color Composer</h1>
 
   <div class='current'>
     <div class='color'></div>
-    <div class='info'>
-      <div class='hsla'></div>
-      <div class='hex'></div>
+    <div class='detail-wrap'>
+      <div class='info'>
+        <span class='hex'></span><br>
+        <span class='rgb'></span>
+      </div>
+      <div class='status'>
+        <div class='h state'>
+          <div class='subtitle'>hue</div>
+          <div class='value'></div>
+        </div>
+        <div class='s state'>
+          <div class='subtitle'>saturation</div>
+          <div class='value'></div>
+        </div>
+        <div class='l state'>
+          <div class='subtitle'>lightness</div>
+          <div class='value'></div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="keyboard-wrap">
+
+    <div id='picker'></div>
+
     <div class="keyboard">
       <div class="row">
         <i><span>q</span><b>H--</b></i>

@@ -50,6 +50,7 @@ gulp.task('sass', function() {
 gulp.task('concat-css', function() {
     return gulp.src([
         './assets/css/vendor/reset.css',
+        './assets/css/vendor/colorjoe.css',
         './assets/css/**/*.css'
         ])
     .pipe(concat('all.css'))
