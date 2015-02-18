@@ -283,22 +283,10 @@ body {
   text-rendering: optimizeLegibility;
   background-size: 95%; }
 
-.title {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  order: 1;
-  padding: 20px;
-  align-self: flex-start; }
-
 .current {
-  margin: 60px 0 80px 0;
+  width: 100%;
+  padding: 60px 0 80px 0;
   order: 2; }
-
-.current .color {
-  width: 1000px;
-  height: 100px;
-  border: 1px solid #111; }
 
 .current .detail-wrap {
   display: -webkit-box;
@@ -310,6 +298,8 @@ body {
   flex-direction: column; }
 
 .current .info {
+  align-self: center;
+  width: 300px;
   color: #444;
   font-size: 24px;
   line-height: 44px;

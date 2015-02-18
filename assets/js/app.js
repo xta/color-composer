@@ -85,7 +85,7 @@ function initColor() {
 
     update: function(){
       var hex = this.toHexString();
-      $('.current .color').css('background-color', hex );
+      $('.current').css('background-color', hex );
       $('.current .info .hex').text( hex );
       $('.current .info .rgb').text( this.toRGBString() );
 
