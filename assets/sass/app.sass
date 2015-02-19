@@ -31,6 +31,11 @@ $label-disabled-color: $key-bg-color;
 $label-color: #eee;
 $label-bg-color: #404048;
 
+// credits
+$credits-color: #0b74d0;
+$credits-hover-color: #fff;
+$credits-bg-color: $keyboard-bg-color;
+
 // pagewide
 body {
   font: normal 1em/1.45em "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -62,7 +67,7 @@ body {
 .current {
   width: 100%;
   padding: 3em 0;
-  order: 2;
+  order: 1;
 }
 
 .current .detail-wrap {
@@ -178,7 +183,7 @@ body {
 
 .keyboard-wrap {
   padding: 3em 0;
-  order: 3;
+  order: 2;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -351,6 +356,27 @@ body {
   background-color: $key-bg-color;
 }
 
+// credits
+
+.credits {
+  width: 100%;
+  padding: 20px 0;
+  order: 3;
+  text-align: center;
+  color: $credits-color;
+  background-color: $credits-bg-color;
+}
+
+.credits a:link,a:active,a:visited {
+  text-decoration: none;
+  color: $credits-color;
+}
+
+.credits a:hover {
+  text-decoration: none;
+  color: $credits-hover-color;
+}
+
 // responsive
 
 // default
@@ -385,7 +411,6 @@ body {
   }
 
 }
-
 
 // Tablet
 @media only screen and (min-width : 768px) and (max-width : 1024px) {

@@ -25,7 +25,7 @@ body {
 .current {
   width: 100%;
   padding: 3em 0;
-  order: 2; }
+  order: 1; }
 
 .current .detail-wrap {
   display: -webkit-box;
@@ -124,7 +124,7 @@ body {
 /* keyboard credit: http://codepen.io/kowlor/pen/MYOKRd */
 .keyboard-wrap {
   padding: 3em 0;
-  order: 3;
+  order: 2;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -286,6 +286,22 @@ body {
   position: static;
   color: #88b7bf;
   background-color: #1d1615; }
+
+.credits {
+  width: 100%;
+  padding: 20px 0;
+  order: 3;
+  text-align: center;
+  color: #0b74d0;
+  background-color: #111; }
+
+.credits a:link, a:active, a:visited {
+  text-decoration: none;
+  color: #0b74d0; }
+
+.credits a:hover {
+  text-decoration: none;
+  color: #fff; }
 
 #picker {
   background-color: #222;

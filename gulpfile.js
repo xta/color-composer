@@ -51,6 +51,7 @@ gulp.task('concat-css', function() {
     return gulp.src([
         './assets/css/vendor/reset.css',
         './assets/css/vendor/colorjoe.css',
+        './assets/css/vendor/font-awesome-edited-font-dir-path.min.css',
         './assets/css/**/*.css'
         ])
     .pipe(concat('all.css'))
