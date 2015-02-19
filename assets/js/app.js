@@ -22,8 +22,9 @@ $(function() {
 function initColor() {
 
   CCAPP.color = {
+    // NOTE: when HSL default is adjusted, update $current-bg-color sass
     hue: 208, // range: 0 - 360. 0 & 360 are the same
-    saturation: 100, // range: 0 - 100
+    saturation: 90, // range: 0 - 100
     lightness: 43, // range: 0 - 100
     alpha: 1, // range: 0 - 1
 
@@ -96,6 +97,7 @@ function initColor() {
       $('.current .status .l .value').text( this.lightness );
 
       this._update_text_colors();
+      this._update_keys_at_limit();
 
       CCAPP.picker.set( hex );
     },
@@ -126,6 +128,53 @@ function initColor() {
 
         $info_text.removeClass('dark');
         $status_text.removeClass('dark');
+      }
+    },
+
+    _update_keys_at_limit: function(){
+      var $a = $('i.a-key'),
+      $s = $('i.s-key'),
+      $d = $('i.d-key'),
+      $f = $('i.f-key'),
+      $z = $('i.z-key'),
+      $x = $('i.x-key'),
+      $c = $('i.c-key'),
+      $v = $('i.v-key');
+
+      // saturation (a/s 0..100 d/f)
+      if (this.saturation === 0) {
+        $a.addClass('disabled');
+        $s.addClass('disabled');
+        $d.removeClass('disabled');
+        $f.removeClass('disabled');
+      } else if (this.saturation === 100) {
+        $a.removeClass('disabled');
+        $s.removeClass('disabled');
+        $d.addClass('disabled');
+        $f.addClass('disabled');
+      } else {
+        $a.removeClass('disabled');
+        $s.removeClass('disabled');
+        $d.removeClass('disabled');
+        $f.removeClass('disabled');
+      }
+
+      // lightness (z/x 0..100 c/v)
+      if (this.lightness === 0) {
+        $z.addClass('disabled');
+        $x.addClass('disabled');
+        $c.removeClass('disabled');
+        $v.removeClass('disabled');
+      } else if (this.lightness === 100) {
+        $z.removeClass('disabled');
+        $x.removeClass('disabled');
+        $c.addClass('disabled');
+        $v.addClass('disabled');
+      } else {
+        $z.removeClass('disabled');
+        $x.removeClass('disabled');
+        $c.removeClass('disabled');
+        $v.removeClass('disabled');
       }
     }
 
