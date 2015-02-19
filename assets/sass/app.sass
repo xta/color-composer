@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 // vars
-$bg-color: #fdfdfd;
+$bg-color: #111;
 $keyboard-bg-color: #111;
 
 // current color
@@ -32,13 +32,6 @@ $label-color: #eee;
 $label-bg-color: #404048;
 
 // pagewide
-html, body {
-  height: 100vh;
-  width: 100vw;
-  min-width: 1280px;
-  min-height: 800px;
-}
-
 body {
   font: normal 1em/1.45em "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: $bg-color;
@@ -181,18 +174,10 @@ body {
   text-align: right;
 }
 
-// color picker
-
-#picker {
-  background-color: $picker-bg-color;
-  border: none;
-
-  order: 1;
-}
-
 /* keyboard credit: http://codepen.io/kowlor/pen/MYOKRd */
 
 .keyboard-wrap {
+  padding: 3em 0;
   order: 3;
   display: -webkit-box;
   display: -webkit-flex;
@@ -222,7 +207,6 @@ body {
       -ms-user-select: none;
           user-select: none;
   -webkit-tap-highlight-color: transparent;
-  -webkit-tap-highlight-color: transparent;
 
   order: 2;
 }
@@ -237,7 +221,6 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   margin: 0.625rem;
-
 }
 
 .keyboard .row i {
@@ -366,4 +349,64 @@ body {
   position: static;
   color: $key-color;
   background-color: $key-bg-color;
+}
+
+// responsive
+
+// default
+
+#picker {
+  background-color: $picker-bg-color;
+  border: none;
+
+  order: 1;
+}
+
+// Mobile
+@media only screen and (max-width: 767px), only screen and (max-device-width: 767px) {
+
+  #picker {
+    display: none;
+  }
+
+  .keyboard {
+    width: 240px;
+  }
+
+  .keyboard .row .disabled {
+    display: none;
+  }
+
+  .keyboard .row {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
+}
+
+
+// Tablet
+@media only screen and (min-width : 768px) and (max-width : 1024px) {
+
+  #picker {
+    display: none;
+  }
+
+  .keyboard {
+    width: 240px;
+  }
+
+  .keyboard .row .disabled {
+    display: none;
+  }
+
+  .keyboard .row {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+
 }
