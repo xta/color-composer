@@ -285,7 +285,7 @@ body {
 
 .current {
   width: 100%;
-  padding: 60px 0 80px 0;
+  padding: 3em 0;
   order: 2; }
 
 .current .detail-wrap {
@@ -300,14 +300,21 @@ body {
 .current .info {
   align-self: center;
   width: 300px;
-  color: #444;
+  color: #000;
   font-size: 24px;
   line-height: 44px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  flex: 1 100%; }
+  flex: 1 100%;
+  padding: 1em 0; }
+
+.current .info.bright {
+  color: #666; }
+
+.current .info.dark {
+  color: #ccc; }
 
 .current .info .hex {
   flex: 1 auto;
@@ -318,7 +325,14 @@ body {
   order: 2;
   text-align: right; }
 
+.current .status.bright {
+  color: #000; }
+
+.current .status.dark {
+  color: #fff; }
+
 .current .status {
+  color: #fff;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;

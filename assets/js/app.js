@@ -86,6 +86,7 @@ function initColor() {
     update: function(){
       var hex = this.toHexString();
       $('.current').css('background-color', hex );
+
       $('.current .info .hex').text( hex );
       $('.current .info .rgb').text( this.toRGBString() );
 
@@ -93,7 +94,38 @@ function initColor() {
       $('.current .status .s .value').text( this.saturation );
       $('.current .status .l .value').text( this.lightness );
 
+      this._update_text_colors();
+
       CCAPP.picker.set( hex );
+    },
+
+    _update_text_colors: function(){
+      var too_dark      = 30,
+          too_bright    = 80,
+          $info_text    = $('.current .info'),
+          $status_text  = $('.current .status');
+
+      if (this.lightness < too_dark) {
+        $info_text.removeClass('bright');
+        $status_text.removeClass('bright');
+
+        $info_text.addClass('dark');
+        $status_text.addClass('dark');
+
+      } else if (this.lightness > too_bright) {
+        $info_text.removeClass('dark');
+        $status_text.removeClass('dark');
+
+        $info_text.addClass('bright');
+        $status_text.addClass('bright');
+
+      } else {
+        $info_text.removeClass('bright');
+        $status_text.removeClass('bright');
+
+        $info_text.removeClass('dark');
+        $status_text.removeClass('dark');
+      }
     }
 
   };

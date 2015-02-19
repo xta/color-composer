@@ -5,8 +5,15 @@ $bg-color: #fdfdfd;
 $keyboard-bg-color: #111;
 
 // current color
-$info-color: #444;
 $current-bg-color: #111;
+$info-color: #000;
+$status-color: #fff;
+
+$info-color-bright: #666;
+$status-color-bright: #000;
+
+$info-color-dark: #ccc;
+$status-color-dark: #fff;
 
 // color picker
 $picker-bg-color: #222;
@@ -60,7 +67,7 @@ body {
 
 .current {
   width: 100%;
-  padding: 60px 0 80px 0;
+  padding: 3em 0;
   order: 2;
 }
 
@@ -85,6 +92,15 @@ body {
   display: -ms-flexbox;
   display: flex;
   flex: 1 100%;
+  padding: 1em 0;
+}
+
+.current .info.bright {
+  color: $info-color-bright;
+}
+
+.current .info.dark {
+  color: $info-color-dark;
 }
 
 .current .info .hex {
@@ -98,7 +114,16 @@ body {
   text-align: right;
 }
 
+.current .status.bright {
+  color: $status-color-bright;
+}
+
+.current .status.dark {
+  color: $status-color-dark;
+}
+
 .current .status {
+  color: $status-color;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
