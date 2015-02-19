@@ -13,6 +13,7 @@ var CCAPP = global.CCAPP || {}; // ColorComposer App
 $(function() {
   initColor();
   setKeyListeners();
+  setTouchListeners();
   setColorPicker();
   CCAPP.color.update();
 });
@@ -131,7 +132,7 @@ function initColor() {
   };
 }
 
-// key event listeners
+// keyboard key event listeners
 function setKeyListeners() {
 
   var bigChange = 10,
@@ -239,6 +240,83 @@ function setKeyListeners() {
       $('i.v-key').removeClass('active');
     });
 }
+
+// touch/click event listeners
+
+function setTouchListeners() {
+
+  // TODO: DRY these change vars with constants
+  var bigChange = 10,
+    smallChange = 1;
+
+  // Hue
+
+    $('i.q-key').on('click', function() {
+      CCAPP.color.decrementHue(bigChange);
+      CCAPP.color.update();
+    });
+
+    $('i.w-key').on('click', function(){
+      CCAPP.color.decrementHue(smallChange);
+      CCAPP.color.update();
+    });
+
+    $('i.e-key').on('click', function(){
+      CCAPP.color.incrementHue(smallChange);
+      CCAPP.color.update();
+    });
+
+    $('i.r-key').on('click', function(){
+      CCAPP.color.incrementHue(bigChange);
+      CCAPP.color.update();
+    });
+
+  // Saturation
+
+    $('i.a-key').on('click', function(){
+      CCAPP.color.decrementSaturation(bigChange);
+      CCAPP.color.update();
+    });
+
+    $('i.s-key').on('click', function(){
+      CCAPP.color.decrementSaturation(smallChange);
+      CCAPP.color.update();
+    });
+
+    $('i.d-key').on('click', function(){
+      CCAPP.color.incrementSaturation(smallChange);
+      CCAPP.color.update();
+    });
+
+    $('i.f-key').on('click', function(){
+      CCAPP.color.incrementSaturation(bigChange);
+      CCAPP.color.update();
+    });
+
+  // Lightness
+
+    $('i.z-key').on('click', function(){
+      CCAPP.color.decrementLightness(bigChange);
+      CCAPP.color.update();
+    });
+
+    $('i.x-key').on('click', function(){
+      CCAPP.color.decrementLightness(smallChange);
+      CCAPP.color.update();
+    });
+
+    $('i.c-key').on('click', function(){
+      CCAPP.color.incrementLightness(smallChange);
+      CCAPP.color.update();
+    });
+
+    $('i.v-key').on('click', function(){
+      CCAPP.color.incrementLightness(bigChange);
+      CCAPP.color.update();
+    });
+}
+
+// color picker event listeners
 
 function setColorPicker() {
   var joe = colorjoe.rgb('picker');
