@@ -32,7 +32,7 @@ gulp.task('lint', ['lint-app', 'lint-lib']);
 gulp.task('process-js', function() {
     return browserify('./assets/js/app.js').bundle()
         .pipe(source('all.min.js'))
-        .pipe(streamify(uglify()))
+        // .pipe(streamify(uglify()))
         .pipe(gulp.dest('./public/'))
         .pipe(livereload());
 });

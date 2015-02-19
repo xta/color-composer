@@ -6,9 +6,7 @@ var $ = require('jquery');
 var Keyboard = require('keyboardjs');
 var onecolor = require('onecolor');
 var colorjoe = require('colorjoe');
-
-global.window = global;
-var CCAPP = global.CCAPP || {}; // ColorComposer App
+var CCAPP = CCAPP || {}; // ColorComposer App
 
 $(function() {
   initColor();
