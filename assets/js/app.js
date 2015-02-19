@@ -86,6 +86,15 @@ function initColor() {
     },
 
     update: function(){
+      this._update_core();
+      CCAPP.picker.set( this.toHexString() );
+    },
+
+    update_without_picker: function(){
+      this._update_core();
+    },
+
+    _update_core: function(){
       var hex = this.toHexString();
       $('.current').css('background-color', hex );
 
@@ -98,8 +107,6 @@ function initColor() {
 
       this._update_text_colors();
       this._update_keys_at_limit();
-
-      CCAPP.picker.set( hex );
     },
 
     _update_text_colors: function(){
@@ -372,6 +379,14 @@ function setColorPicker() {
   CCAPP.picker = CCAPP.picker || joe;
 
   CCAPP.picker.on('change', function(c) {
-    // TODO: implement update of pagewide states when picker is changed
+    var pickedColor = c.hsl(),
+        hue         = Math.round(pickedColor.hue()*360),
+        saturation  = Math.round(pickedColor.saturation()*100),
+        lightness   = Math.round(pickedColor.lightness()*100);
+
+    CCAPP.color.hue         = hue;
+    CCAPP.color.saturation  = saturation;
+    CCAPP.color.lightness   = lightness;
+    CCAPP.color.update_without_picker();
   });
 }
