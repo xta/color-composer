@@ -94,23 +94,30 @@ body {
   padding: 1em 0;
 }
 
-.current .info.bright {
+.current .info.bright input {
   color: $info-color-bright;
 }
 
-.current .info.dark {
+.current .info.dark input {
   color: $info-color-dark;
 }
 
 .current .info .hex {
-  flex: 1 auto;
   order: 1;
 }
 
 .current .info .rgb {
-  flex: 1 auto;
   order: 2;
   text-align: right;
+}
+
+.current .info input {
+  font-size: 18px;
+  background: transparent;
+  padding: 5px 0;
+  border: none;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+  outline: 0;
 }
 
 .current .status.bright {

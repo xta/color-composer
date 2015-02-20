@@ -12,6 +12,7 @@ $(function() {
   initColor();
   setKeyListeners();
   setTouchListeners();
+  setInputListeners();
   setColorPicker();
   CCAPP.color.update();
 });
@@ -25,6 +26,10 @@ function initColor() {
     saturation: 90, // range: 0 - 100
     lightness: 43, // range: 0 - 100
     alpha: 1, // range: 0 - 1
+
+    do_not_update_picker: false,
+    do_not_update_hex: false,
+    do_not_update_rgb: false,
 
     incrementHue: function(change){
       this.hue = this.hue + change;
@@ -84,21 +89,16 @@ function initColor() {
     },
 
     update: function(){
-      this._update_core();
-      CCAPP.picker.set( this.toHexString() );
-    },
-
-    update_without_picker: function(){
-      this._update_core();
-    },
-
-    _update_core: function(){
-      var hex = this.toHexString();
-      $('.current').css('background-color', hex );
-
-      $('.current .info .hex').text( hex );
-      $('.current .info .rgb').text( this.toRGBString() );
-
+      if(!this.do_not_update_picker){
+        CCAPP.picker.set( this.toHexString() );
+      }
+      if(!this.do_not_update_hex){
+        $('.current .info .hex').val( this.toHexString() );
+      }
+      if(!this.do_not_update_rgb){
+        $('.current .info .rgb').val( this.toRGBString() );
+      }
+      $('.current').css('background-color', this.toHexString() );
       $('.current .status .h .value').text( this.hue );
       $('.current .status .s .value').text( this.saturation );
       $('.current .status .l .value').text( this.lightness );
@@ -195,6 +195,8 @@ function setKeyListeners() {
   // Hue
 
     Keyboard.on('q', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.decrementHue(bigChange);
       CCAPP.color.update();
       $('i.q-key').addClass('active');
@@ -203,6 +205,8 @@ function setKeyListeners() {
     });
 
     Keyboard.on('w', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.decrementHue(smallChange);
       CCAPP.color.update();
       $('i.w-key').addClass('active');
@@ -211,6 +215,8 @@ function setKeyListeners() {
     });
 
     Keyboard.on('e', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.incrementHue(smallChange);
       CCAPP.color.update();
       $('i.e-key').addClass('active');
@@ -219,6 +225,8 @@ function setKeyListeners() {
     });
 
     Keyboard.on('r', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.incrementHue(bigChange);
       CCAPP.color.update();
       $('i.r-key').addClass('active');
@@ -229,6 +237,8 @@ function setKeyListeners() {
   // Saturation
 
     Keyboard.on('a', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.decrementSaturation(bigChange);
       CCAPP.color.update();
       $('i.a-key').addClass('active');
@@ -237,6 +247,8 @@ function setKeyListeners() {
     });
 
     Keyboard.on('s', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.decrementSaturation(smallChange);
       CCAPP.color.update();
       $('i.s-key').addClass('active');
@@ -245,6 +257,8 @@ function setKeyListeners() {
     });
 
     Keyboard.on('d', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.incrementSaturation(smallChange);
       CCAPP.color.update();
       $('i.d-key').addClass('active');
@@ -253,6 +267,8 @@ function setKeyListeners() {
     });
 
     Keyboard.on('f', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.incrementSaturation(bigChange);
       CCAPP.color.update();
       $('i.f-key').addClass('active');
@@ -263,6 +279,8 @@ function setKeyListeners() {
   // Lightness
 
     Keyboard.on('z', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.decrementLightness(bigChange);
       CCAPP.color.update();
       $('i.z-key').addClass('active');
@@ -271,6 +289,8 @@ function setKeyListeners() {
     });
 
     Keyboard.on('x', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.decrementLightness(smallChange);
       CCAPP.color.update();
       $('i.x-key').addClass('active');
@@ -279,6 +299,8 @@ function setKeyListeners() {
     });
 
     Keyboard.on('c', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.incrementLightness(smallChange);
       CCAPP.color.update();
       $('i.c-key').addClass('active');
@@ -287,12 +309,28 @@ function setKeyListeners() {
     });
 
     Keyboard.on('v', function() {
+      if(abortKeyEvent()) { return; }
+      resetDoNotUpdates();
       CCAPP.color.incrementLightness(bigChange);
       CCAPP.color.update();
       $('i.v-key').addClass('active');
     }, function() {
       $('i.v-key').removeClass('active');
     });
+}
+
+function abortKeyEvent(){
+  if ( $("input").is(":focus") ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function resetDoNotUpdates() {
+  CCAPP.color.do_not_update_picker = false;
+  CCAPP.color.do_not_update_hex = false;
+  CCAPP.color.do_not_update_rgb = false;
 }
 
 // touch/click event listeners
@@ -306,21 +344,25 @@ function setTouchListeners() {
   // Hue
 
     $('i.q-key').on('click', function() {
+      resetDoNotUpdates();
       CCAPP.color.decrementHue(bigChange);
       CCAPP.color.update();
     });
 
     $('i.w-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.decrementHue(smallChange);
       CCAPP.color.update();
     });
 
     $('i.e-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.incrementHue(smallChange);
       CCAPP.color.update();
     });
 
     $('i.r-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.incrementHue(bigChange);
       CCAPP.color.update();
     });
@@ -328,21 +370,25 @@ function setTouchListeners() {
   // Saturation
 
     $('i.a-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.decrementSaturation(bigChange);
       CCAPP.color.update();
     });
 
     $('i.s-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.decrementSaturation(smallChange);
       CCAPP.color.update();
     });
 
     $('i.d-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.incrementSaturation(smallChange);
       CCAPP.color.update();
     });
 
     $('i.f-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.incrementSaturation(bigChange);
       CCAPP.color.update();
     });
@@ -350,24 +396,67 @@ function setTouchListeners() {
   // Lightness
 
     $('i.z-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.decrementLightness(bigChange);
       CCAPP.color.update();
     });
 
     $('i.x-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.decrementLightness(smallChange);
       CCAPP.color.update();
     });
 
     $('i.c-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.incrementLightness(smallChange);
       CCAPP.color.update();
     });
 
     $('i.v-key').on('click', function(){
+      resetDoNotUpdates();
       CCAPP.color.incrementLightness(bigChange);
       CCAPP.color.update();
     });
+}
+
+// input field event listeners
+
+function setInputListeners(){
+  $('input.hex').on('input', function(e) {
+    CCAPP.color.do_not_update_picker = false;
+    CCAPP.color.do_not_update_hex = true;
+    CCAPP.color.do_not_update_rgb = false;
+
+    updateColorHSL(e.currentTarget.value);
+  });
+
+  $('input.rgb').on('input', function(e) {
+    CCAPP.color.do_not_update_picker = false;
+    CCAPP.color.do_not_update_hex = false;
+    CCAPP.color.do_not_update_rgb = true;
+
+    updateColorHSL(e.currentTarget.value);
+  });
+}
+
+// expects onecolor object as input
+function updateColorHSL(input_value) {
+  var color = onecolor(input_value); // parse & validate input
+  var inputColor, hue, saturation, lightness;
+
+  if (color) {
+    inputColor  = color.hsl();
+    hue         = Math.round(inputColor.hue()*360);
+    saturation  = Math.round(inputColor.saturation()*100);
+    lightness   = Math.round(inputColor.lightness()*100);
+
+    CCAPP.color.hue         = hue;
+    CCAPP.color.saturation  = saturation;
+    CCAPP.color.lightness   = lightness;
+
+    CCAPP.color.update();
+  }
 }
 
 // color picker event listeners
@@ -385,6 +474,12 @@ function setColorPicker() {
     CCAPP.color.hue         = hue;
     CCAPP.color.saturation  = saturation;
     CCAPP.color.lightness   = lightness;
-    CCAPP.color.update_without_picker();
+    CCAPP.color.update();
+  });
+
+  $('#picker').on('click', function() {
+    CCAPP.color.do_not_update_picker = true;
+    CCAPP.color.do_not_update_hex = false;
+    CCAPP.color.do_not_update_rgb = false;
   });
 }
