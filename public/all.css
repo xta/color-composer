@@ -294,68 +294,19 @@ body {
   display: flex;
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
-  flex-direction: column; }
-
-.current .info {
-  align-self: center;
-  width: 300px;
-  color: #000;
-  font-size: 24px;
-  line-height: 44px;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  flex: 1 100%;
-  padding: 1em 0; }
-
-.current .info.bright input {
-  color: #666; }
-
-.current .info.dark input {
-  color: #ccc; }
-
-.current .info .hex {
-  order: 1; }
-
-.current .info .rgb {
-  order: 2;
-  text-align: right; }
-
-.current .info input {
-  font-size: 18px;
-  background: transparent;
-  padding: 5px 0;
-  border: none;
-  border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
-  outline: 0; }
-
-.current .status.bright {
-  color: #000; }
-
-.current .status.dark {
-  color: #fff; }
-
-.current .status {
-  color: #fff;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -webkit-box-align: center;
   -webkit-align-items: center;
   -ms-flex-align: center;
-  align-items: center; }
+  align-items: center;
+  padding: 1em 0; }
 
-.current .status .state {
+.current .state, .current .info {
   width: 300px;
-  font-size: 36px;
-  font-weight: 200;
-  line-height: 1.2em;
-  padding-top: 0.2em;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -363,28 +314,46 @@ body {
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center; }
+  -webkit-box-pack: space-between;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: space-between;
+  justify-content: space-between; }
 
-.current .status .h {
-  order: 1; }
+.current .state {
+  font-size: 36px;
+  font-weight: 200;
+  line-height: 1.2em;
+  padding-top: 0.2em;
+  color: #fff; }
 
-.current .status .s {
-  order: 2; }
+.current .info {
+  padding: 1em 0; }
 
-.current .status .l {
-  order: 3; }
+.current .info input {
+  color: #000;
+  font-size: 18px;
+  background: transparent;
+  padding: 5px 0;
+  border: none;
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+  outline: 0; }
 
-.current .status .state .subtitle {
-  order: 1;
-  flex: 1;
+.current .info.bright input {
+  color: #666; }
+
+.current .info.dark input {
+  color: #ccc; }
+
+.current .state.bright {
+  color: #000; }
+
+.current .state.dark {
+  color: #fff; }
+
+.current .info .hex {
   text-align: left; }
 
-.current .status .state .value {
-  order: 2;
-  flex: 1;
+.current .info .rgb {
   text-align: right; }
 
 /* keyboard credit: http://codepen.io/kowlor/pen/MYOKRd */
@@ -434,7 +403,12 @@ body {
 
 .keyboard .row i {
   color: #88b7bf;
-  background-color: #1d1615; }
+  background-color: #1d1615;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: reverse;
+  -webkit-flex-direction: column-reverse;
+  -ms-flex-direction: column-reverse;
+  flex-direction: column-reverse; }
 
 .keyboard .row i.disabled {
   color: #65787b;
@@ -449,13 +423,6 @@ body {
   -ms-transform: translateX(7%);
   -webkit-transform: translateX(7%);
   transform: translateX(7%); }
-
-.keyboard .row i {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: reverse;
-  -webkit-flex-direction: column-reverse;
-  -ms-flex-direction: column-reverse;
-  flex-direction: column-reverse; }
 
 .keyboard .row i b {
   background: #404048;
@@ -575,17 +542,28 @@ body {
   order: 1; }
 
 @media only screen and (max-width: 767px), only screen and (max-device-width: 767px) {
+  .current {
+    padding: 1em 0; }
+  .current .detail-wrap {
+    padding: 0.2em 0; }
   #picker {
     display: none; }
-  .keyboard {
-    width: 240px; }
+  .keyboard-wrap {
+    padding: 0.2em 0; }
   .keyboard .row .disabled {
     display: none; }
   .keyboard .row {
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center; } }
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin: 1rem; }
+  .keyboard .row i {
+    color: #1d1615; }
+  .keyboard .row i b {
+    font-size: 1em;
+    background: #1d1615;
+    margin-top: 1rem; } }
 
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
   #picker {

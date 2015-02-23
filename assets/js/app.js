@@ -99,9 +99,9 @@ function initColor() {
         $('.current .info .rgb').val( this.toRGBString() );
       }
       $('.current').css('background-color', this.toHexString() );
-      $('.current .status .h .value').text( this.hue );
-      $('.current .status .s .value').text( this.saturation );
-      $('.current .status .l .value').text( this.lightness );
+      $('.current .state.h .value').text( this.hue );
+      $('.current .state.s .value').text( this.saturation );
+      $('.current .state.l .value').text( this.lightness );
 
       this._update_text_colors();
       this._update_keys_at_limit();
@@ -111,7 +111,7 @@ function initColor() {
       var too_dark      = 30,
           too_bright    = 80,
           $info_text    = $('.current .info'),
-          $status_text  = $('.current .status');
+          $status_text  = $('.current .state');
 
       if (this.lightness < too_dark) {
         $info_text.removeClass('bright');
